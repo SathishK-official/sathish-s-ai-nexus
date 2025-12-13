@@ -3,7 +3,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { ChevronDown, FolderOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/portfolio';
-
+import heroBg from '@/assets/hero-bg.jpg';
 
 interface HeroSectionProps {
   onUnlock: () => void;
@@ -21,6 +21,11 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
     <section
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, hsl(0 0% 3% / 0.7), hsl(0 0% 3% / 0.9)), url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">

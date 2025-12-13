@@ -46,7 +46,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background particle-bg">
+    <div className="min-h-screen bg-background">
       <Header activeSection={activeSection} isLocked={isLocked} />
       
       <main>
