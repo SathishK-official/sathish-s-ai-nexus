@@ -46,22 +46,27 @@ const ProjectsSection = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -5 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              whileHover={{
+                scale: 1.04,
+                y: -10,
+                transition: { duration: 0.15, ease: "easeOut" },
+              }}
+              whileTap={{ scale: 0.98, y: -2 }}
               onClick={() => setSelectedProject(project)}
-              className="glass-card overflow-hidden cursor-pointer group volcanic-glow"
+              className="glass-card cursor-pointer group volcanic-glow card-reflection"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.thumbnail}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-200 ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-heading tracking-wider">
