@@ -54,7 +54,7 @@ const ProjectsSection = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               onClick={() => setSelectedProject(project)}
-              className="glass-card overflow-hidden cursor-pointer group hover:border-primary/50 transition-colors duration-200"
+              className="glass-card overflow-hidden cursor-pointer group hover:border-primary/50 transition-colors duration-200 reflection-hover"
             >
               <div className="relative h-48 overflow-hidden">
                 <img

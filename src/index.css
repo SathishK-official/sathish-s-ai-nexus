@@ -129,6 +129,36 @@
     @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
   }
 
+  /* Reflection shine effect */
+  .reflection-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reflection-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(0 0% 100% / 0.15),
+      transparent
+    );
+    transform: skewX(-25deg);
+    transition: none;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .reflection-hover:hover::before {
+    left: 150%;
+    transition: left 0.6s ease-in-out;
+  }
+
   /* Volcanic glow effect */
   .volcanic-glow {
     box-shadow: 0 0 60px hsl(var(--volcanic-red) / 0.3),
