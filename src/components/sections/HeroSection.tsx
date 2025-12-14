@@ -27,32 +27,10 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
         backgroundPosition: 'center',
       }}
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full bg-gradient-radial from-primary/20 via-primary/5 to-transparent blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -bottom-1/2 -right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-volcanic-orange/15 via-primary/5 to-transparent blur-3xl"
-        />
+      {/* Static background accents */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-1/2 -left-1/4 w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute -bottom-1/2 -right-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl" />
       </div>
 
       {/* Content */}
@@ -133,24 +111,11 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2"
-        >
-          <motion.div
-            animate={{ opacity: [0, 1, 0], y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-2 bg-primary rounded-full"
-          />
-        </motion.div>
-      </motion.div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
+          <div className="w-1 h-2 bg-primary rounded-full animate-pulse" />
+        </div>
+      </div>
     </section>
   );
 };

@@ -47,12 +47,11 @@ const AchievementsSection = () => {
           {achievementsData.map((achievement, index) => (
             <motion.div
               key={achievement.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -5 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               onClick={() => setSelectedAchievement(achievement)}
-              className="glass-card overflow-hidden cursor-pointer group volcanic-glow"
+              className="glass-card overflow-hidden cursor-pointer group hover:border-primary/50 transition-colors duration-200"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -100,7 +99,7 @@ const AchievementsSection = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="glass-card w-full max-w-2xl max-h-[90vh] overflow-y-auto volcanic-glow"
+              className="glass-card w-full max-w-2xl max-h-[90vh] overflow-y-auto"
             >
               {/* Header */}
               <div className="relative h-64">
