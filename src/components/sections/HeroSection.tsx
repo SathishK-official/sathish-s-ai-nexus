@@ -79,15 +79,13 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-muted-foreground/70 text-base md:text-lg max-w-3xl mx-auto mb-8 font-body italic leading-relaxed text-center"
+          className="text-muted-foreground/70 text-base md:text-lg max-w-4xl mx-auto mb-8 font-body italic leading-relaxed text-center"
         >
-          More than a profile — this is proof of growth through building.
+          More than a profile — this is proof of growth through building. These projects reflect my technical strengths,
           <br className="hidden md:block" />
-          These projects reflect my technical strengths, problem-solving mindset,
+          problem-solving mindset, and the experience gained from designing, testing, and refining AI-driven solutions
           <br className="hidden md:block" />
-          and the experience gained from designing, testing, and refining
-          <br className="hidden md:block" />
-          AI-driven solutions into functional real-world applications.
+          into functional real-world applications.
         </motion.p>
 
         <motion.p
@@ -125,12 +123,6 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-primary rounded-full animate-pulse" />
-        </div>
-      </div>
     </section>
   );
 };
