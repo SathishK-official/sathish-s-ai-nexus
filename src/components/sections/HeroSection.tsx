@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ChevronDown, FolderOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/portfolio';
+import { useRef } from 'react';
 import heroBg from '@/assets/hero-bg.jpg';
 
 interface HeroSectionProps {
@@ -10,6 +11,14 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ onUnlock }: HeroSectionProps) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
     if (element) {
@@ -19,14 +28,25 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(to bottom, hsl(0 0% 3% / 0.7), hsl(0 0% 3% / 0.9)), url(${heroBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
+      {/* Parallax Background */}
+      <motion.div 
+        className="absolute inset-0 -z-10"
+        style={{ y: backgroundY }}
+      >
+        <div 
+          className="absolute inset-0 scale-110"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, hsl(0 0% 3% / 0.6), hsl(0 0% 3% / 0.85)), url(${heroBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      </motion.div>
+
       {/* Static background accents */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-1/2 -left-1/4 w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl" />
