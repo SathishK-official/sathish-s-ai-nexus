@@ -96,21 +96,6 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              {/* Floating elements */}
-              <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-4 w-20 h-20 rounded-xl glass-card flex items-center justify-center ember-glow"
-              >
-                <span className="font-heading text-2xl text-primary">AI</span>
-              </motion.div>
-              <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-4 -left-4 w-24 h-24 rounded-xl glass-card flex items-center justify-center ember-glow"
-              >
-                <span className="font-heading text-xl text-primary">ML</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
