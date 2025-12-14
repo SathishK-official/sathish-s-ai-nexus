@@ -59,7 +59,7 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-2 p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30">
           {visibleNavItems.map((item, index) => (
             <motion.button
               key={item.id}
@@ -68,10 +68,10 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
               transition={{ delay: index * 0.1 }}
               onClick={() => scrollToSection(item.id)}
               className={cn(
-                'px-4 py-2 font-heading text-sm tracking-wider transition-all duration-300 rounded-lg',
+                'px-4 py-2 font-heading text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover',
                 activeSection === item.id
-                  ? 'text-primary bg-primary/10'
-                  : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
+                  ? 'text-primary-foreground bg-primary shadow-lg shadow-primary/30'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary/80'
               )}
             >
               {item.label}
@@ -104,10 +104,10 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={cn(
-                    'px-4 py-3 font-heading text-sm tracking-wider text-left rounded-lg transition-all duration-300',
+                    'px-4 py-3 font-heading text-sm tracking-wider text-left rounded-lg transition-all duration-300 reflection-hover',
                     activeSection === item.id
-                      ? 'text-primary bg-primary/10'
-                      : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
+                      ? 'text-primary-foreground bg-primary shadow-lg shadow-primary/30'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary/80'
                   )}
                 >
                   {item.label}
