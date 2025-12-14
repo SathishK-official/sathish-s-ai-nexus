@@ -59,7 +59,7 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center gap-3 mb-8"
+          className="flex items-center justify-center gap-3 mb-6"
         >
           <span className="font-heading text-2xl md:text-3xl lg:text-4xl text-primary tracking-wider">
             {siteConfig.role}
@@ -78,8 +78,23 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="text-muted-foreground/70 text-base md:text-lg max-w-3xl mx-auto mb-8 font-body italic leading-relaxed text-center"
+        >
+          More than a profile — this is proof of growth through building.
+          <br className="hidden md:block" />
+          These projects reflect my technical strengths, problem-solving mindset,
+          <br className="hidden md:block" />
+          and the experience gained from designing, testing, and refining
+          <br className="hidden md:block" />
+          AI-driven solutions into functional real-world applications.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto mb-12 font-body leading-relaxed"
+          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-body leading-relaxed"
         >
           "{siteConfig.quote}"
         </motion.p>
