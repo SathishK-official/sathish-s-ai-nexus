@@ -53,10 +53,10 @@
     --glass-bg: 0 0% 8% / 0.8;
     --glass-border: 0 0% 20% / 0.5;
 
-    /* Shadows */
-    --shadow-volcanic: 0 0 120px hsl(0 100% 50% / 0.6);
-    --shadow-ember: 0 0 60px hsl(0 100% 50% / 0.8);
-    --shadow-glow: 0 0 200px hsl(0 100% 50% / 0.4);
+    /* Shadows - reduced to 1/3 */
+    --shadow-volcanic: 0 0 40px hsl(0 100% 50% / 0.2);
+    --shadow-ember: 0 0 20px hsl(0 100% 50% / 0.25);
+    --shadow-glow: 0 0 65px hsl(0 100% 50% / 0.13);
 
     /* Sidebar */
     --sidebar-background: 0 0% 5%;
@@ -313,20 +313,24 @@
     @apply text-primary;
   }
 
-  /* Ember particle animation - GPU accelerated */
+  /* Ember particle animation - GPU accelerated, bottom to top with fadeout */
   @keyframes ember-rise {
     0% {
       transform: translateY(100vh) translateX(0) scale(1);
       opacity: 0;
     }
-    10% {
-      opacity: 1;
+    5% {
+      opacity: 0.9;
     }
-    90% {
-      opacity: 0.6;
+    50% {
+      opacity: 0.7;
+      transform: translateY(50vh) translateX(15px) scale(0.85);
+    }
+    80% {
+      opacity: 0.3;
     }
     100% {
-      transform: translateY(-100px) translateX(20px) scale(0.5);
+      transform: translateY(-50px) translateX(25px) scale(0.3);
       opacity: 0;
     }
   }
@@ -336,7 +340,7 @@
     bottom: 0;
     border-radius: 50%;
     background: radial-gradient(circle, hsl(var(--volcanic-red)) 0%, hsl(var(--volcanic-orange)) 50%, transparent 100%);
-    box-shadow: 0 0 6px hsl(var(--volcanic-red) / 0.8), 0 0 12px hsl(var(--volcanic-orange) / 0.4);
+    box-shadow: 0 0 4px hsl(var(--volcanic-red) / 0.5), 0 0 8px hsl(var(--volcanic-orange) / 0.3);
     animation: ember-rise linear infinite;
     will-change: transform, opacity;
   }
