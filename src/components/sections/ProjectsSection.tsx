@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { X, ExternalLink, Github, Play } from 'lucide-react';
 import { projectsData } from '@/config/portfolio';
 import { Button } from '@/components/ui/button';
+import EmberParticles from '@/components/EmberParticles';
 
 interface Project {
   id: number;
@@ -27,6 +28,9 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="section-container relative overflow-hidden">
+      {/* Ember Particles */}
+      <EmberParticles />
+
       {/* Background */}
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
