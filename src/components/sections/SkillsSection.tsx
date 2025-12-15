@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code, Monitor, Wrench, BookOpen } from 'lucide-react';
 import { skillsData } from '@/config/portfolio';
-import EmberParticles from '@/components/EmberParticles';
+
 
 const categories = [
   { id: 'languages', label: 'LANGUAGES', icon: Code, data: skillsData.languages },
@@ -24,9 +24,6 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="section-container relative overflow-hidden">
-      {/* Ember Particles */}
-      <EmberParticles />
-
       {/* Background */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-volcanic-orange/5 rounded-full blur-3xl" />
