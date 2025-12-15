@@ -40,7 +40,7 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
         <div 
           className="absolute inset-0 scale-110"
           style={{
-            backgroundImage: `linear-gradient(to bottom, hsl(0 0% 3% / 0.6), hsl(0 0% 3% / 0.85)), url(${heroBg})`,
+            backgroundImage: `linear-gradient(to bottom, hsl(0 0% 3% / 0.2), hsl(0 0% 3% / 0.45)), url(${heroBg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
