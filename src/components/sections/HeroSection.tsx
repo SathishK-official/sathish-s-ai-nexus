@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/portfolio';
 import { useRef } from 'react';
 import heroBg from '@/assets/hero-bg.jpg';
-
+import EmberParticles from '@/components/EmberParticles';
 
 interface HeroSectionProps {
   onUnlock: () => void;
@@ -47,6 +47,9 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           }}
         />
       </motion.div>
+
+      {/* Ember Particles */}
+      <EmberParticles />
 
       {/* Static background accents */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
