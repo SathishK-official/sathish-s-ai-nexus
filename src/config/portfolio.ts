@@ -45,6 +45,7 @@ export const siteConfig = {
     { id: "about", label: "ABOUT" },
     { id: "education", label: "EDUCATION" },
     { id: "projects", label: "PROJECTS" },
+    { id: "experience", label: "EXPERIENCE" },
     { id: "skills", label: "SKILLS" },
     { id: "achievements", label: "ACHIEVEMENTS" },
     { id: "resume", label: "RESUME" },
@@ -76,6 +77,25 @@ export const educationData = [
     year: "2014 - 2016",
     description: "Science stream with Computer Science. School topper in Mathematics and Physics.",
     gpa: "95%",
+  },
+];
+
+export const experienceData = [
+  {
+    id: 1,
+    role: "Senior AI/ML Engineer",
+    company: "Google Research",
+    year: "2022 - Present",
+    description: "Leading development of large language models and transformer architectures. Shipping production ML systems serving millions of users daily.",
+    type: "Full-time",
+  },
+  {
+    id: 2,
+    role: "Machine Learning Engineer",
+    company: "Tesla AI",
+    year: "2020 - 2022",
+    description: "Developed computer vision algorithms for autonomous driving. Built real-time object detection and path planning systems.",
+    type: "Full-time",
   },
 ];
 
