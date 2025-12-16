@@ -161,8 +161,8 @@
 
   /* Volcanic glow effect */
   .volcanic-glow {
-    box-shadow: 0 0 60px hsl(var(--volcanic-red) / 0.3),
-                0 0 100px hsl(var(--volcanic-red) / 0.1);
+    box-shadow: 0 0 30px hsl(var(--volcanic-red) / 0.15),
+                0 0 50px hsl(var(--volcanic-red) / 0.05);
   }
 
   .ember-glow {
