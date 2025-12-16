@@ -9,7 +9,7 @@ import SkillsSection from '@/components/sections/SkillsSection';
 import AchievementsSection from '@/components/sections/AchievementsSection';
 import ResumeSection from '@/components/sections/ResumeSection';
 import ContactSection from '@/components/sections/ContactSection';
-import EmberParticles from '@/components/EmberParticles';
+
 import { siteConfig } from '@/config/portfolio';
 
 const Index = () => {
@@ -51,7 +51,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <EmberParticles />
       <Header activeSection={activeSection} isLocked={isLocked} />
       
       <main>
