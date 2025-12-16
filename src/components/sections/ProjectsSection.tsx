@@ -57,8 +57,15 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: index * 0.05 }}
+              whileHover={{ 
+                scale: 1.03, 
+                rotateX: -2, 
+                rotateY: 3,
+                translateY: -8 
+              }}
               onClick={() => setSelectedProject(project)}
               className="glass-card overflow-hidden cursor-pointer group hover:border-primary/50 transition-colors duration-200 reflection-hover volcanic-glow"
+              style={{ transformStyle: "preserve-3d" }}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
