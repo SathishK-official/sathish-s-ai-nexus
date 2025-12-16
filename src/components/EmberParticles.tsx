@@ -1,18 +1,23 @@
 import { memo } from 'react';
 
-// Generate static random positions at build time for consistent rendering
-const particles = Array.from({ length: 15 }, (_, i) => ({
+// Generate particles for full-page flow - smaller and more numerous
+const particles = Array.from({ length: 60 }, (_, i) => ({
   id: i,
-  left: `${5 + (i * 6.5) % 90}%`,
-  animationDelay: `${(i * 0.8) % 8}s`,
-  animationDuration: `${6 + (i % 4) * 2}s`,
-  size: 2 + (i % 3),
-  opacity: 0.4 + (i % 5) * 0.12,
+  left: `${(i * 1.7) % 100}%`,
+  animationDelay: `${(i * 0.5) % 15}s`,
+  animationDuration: `${12 + (i % 8) * 3}s`,
+  size: 6 + (i % 4) * 3, // 6-15px - larger for visibility
+  opacity: 0.5 + (i % 4) * 0.15, // Higher opacity
+  zIndex: i % 2 === 0 ? 0 : 50, // Mix of behind and in front
 }));
 
 const EmberParticles = memo(() => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+    <div 
+      className="fixed inset-0 overflow-hidden pointer-events-none" 
+      aria-hidden="true"
+      style={{ zIndex: 1 }}
+    >
       {particles.map((particle) => (
         <div
           key={particle.id}
@@ -24,6 +29,7 @@ const EmberParticles = memo(() => {
             width: `${particle.size}px`,
             height: `${particle.size}px`,
             opacity: particle.opacity,
+            zIndex: particle.zIndex,
           }}
         />
       ))}
