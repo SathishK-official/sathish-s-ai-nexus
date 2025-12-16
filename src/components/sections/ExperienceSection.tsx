@@ -52,7 +52,7 @@ const ExperienceSection = () => {
                 <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className="glass-card p-6 md:p-8 reflection-hover overflow-hidden"
+                    className="glass-card p-6 md:p-8 reflection-hover overflow-hidden volcanic-glow"
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
