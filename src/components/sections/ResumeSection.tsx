@@ -1,10 +1,41 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FileText, Download, Briefcase, GraduationCap, Code, Award } from 'lucide-react';
+import { 
+  FileText, 
+  Download, 
+  Briefcase, 
+  GraduationCap, 
+  Code, 
+  Award,
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  ChevronRight
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/config/portfolio';
+import { siteConfig, educationData, skillsData, projectsData, achievementsData } from '@/config/portfolio';
+
+type TabId = 'summary' | 'education' | 'skills' | 'projects' | 'certifications';
+
+interface Tab {
+  id: TabId;
+  label: string;
+  icon: React.ReactNode;
+}
+
+const tabs: Tab[] = [
+  { id: 'summary', label: 'Summary', icon: <User className="w-4 h-4" /> },
+  { id: 'education', label: 'Education', icon: <GraduationCap className="w-4 h-4" /> },
+  { id: 'skills', label: 'Skills', icon: <Code className="w-4 h-4" /> },
+  { id: 'projects', label: 'Projects', icon: <Briefcase className="w-4 h-4" /> },
+  { id: 'certifications', label: 'Certifications', icon: <Award className="w-4 h-4" /> },
+];
 
 const ResumeSection = () => {
+  const [activeTab, setActiveTab] = useState<TabId>('summary');
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -19,17 +50,236 @@ const ResumeSection = () => {
     document.body.removeChild(link);
   };
 
+  const handleViewResume = () => {
+    window.open('/resume/SATHISH_K_resume.pdf', '_blank');
+  };
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'summary':
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            <div className="space-y-4">
+              <h3 className="font-heading text-xl text-foreground tracking-wide flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                Professional Summary
+              </h3>
+              <p className="text-secondary-foreground font-body leading-relaxed text-base">
+                {siteConfig.about.description}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              {siteConfig.about.highlights.map((highlight, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10"
+                >
+                  <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground font-body">{highlight}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case 'education':
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            {educationData.map((edu, index) => (
+              <motion.div
+                key={edu.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="relative"
+              >
+                <div className="glass-card p-6 border-l-4 border-l-primary">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+                    <h4 className="font-heading text-lg text-foreground tracking-wide">
+                      {edu.degree}
+                    </h4>
+                    <span className="text-primary text-sm font-heading tracking-wider bg-primary/10 px-3 py-1 rounded-full w-fit">
+                      {edu.year}
+                    </span>
+                  </div>
+                  <p className="text-primary/80 font-body text-sm mb-2">{edu.institution}</p>
+                  <p className="text-muted-foreground font-body text-sm">{edu.description}</p>
+                  {edu.gpa && (
+                    <div className="mt-3 inline-flex items-center gap-2 bg-volcanic-orange/10 px-3 py-1.5 rounded-lg">
+                      <Award className="w-4 h-4 text-volcanic-orange" />
+                      <span className="text-sm font-heading text-volcanic-orange tracking-wide">{edu.gpa}</span>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        );
+
+      case 'skills':
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            {Object.entries(skillsData).map(([category, skills], catIndex) => (
+              <div key={category} className="space-y-3">
+                <h4 className="font-heading text-sm text-primary tracking-widest uppercase">
+                  {category === 'libsAndAlgorithms' ? 'AI & ML Libraries' : category}
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: (catIndex * 0.1) + (index * 0.05) }}
+                      className="group relative overflow-hidden"
+                    >
+                      <div className="p-3 rounded-lg bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-body text-foreground">{skill.name}</span>
+                          <span className="text-xs font-heading text-primary">{skill.level}%</span>
+                        </div>
+                        <div className="h-1 bg-muted rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.level}%` }}
+                            transition={{ duration: 0.8, delay: (catIndex * 0.1) + (index * 0.05) }}
+                            className="h-full bg-gradient-to-r from-primary to-volcanic-orange rounded-full"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        );
+
+      case 'projects':
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-4"
+          >
+            {projectsData.slice(0, 4).map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/30 transition-all duration-300"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 className="font-heading text-base text-foreground tracking-wide group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h4>
+                      <span className="text-xs font-body text-primary/70 bg-primary/10 px-2 py-0.5 rounded">
+                        {project.category}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground font-body text-sm line-clamp-2 mb-2">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <span key={tech} className="text-xs font-body text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex-shrink-0"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        );
+
+      case 'certifications':
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-4"
+          >
+            {achievementsData
+              .filter(a => a.category === 'Certification')
+              .map((cert, index) => (
+                <motion.div
+                  key={cert.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-volcanic-orange/5 border border-primary/20"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading text-base text-foreground tracking-wide">{cert.title}</h4>
+                    <p className="text-primary text-sm font-body">{cert.organization} • {cert.date}</p>
+                    <p className="text-muted-foreground font-body text-sm mt-1">{cert.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+          </motion.div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <section id="resume" className="section-container relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      {/* Background decorations */}
+      <div className="absolute top-20 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-volcanic-orange/5 rounded-full blur-3xl" />
 
       <div ref={ref} className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary font-heading text-sm tracking-widest mb-4">
             MY RESUME
@@ -43,163 +293,96 @@ const ResumeSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-5xl mx-auto"
         >
-          {/* Resume preview card */}
-          <div className="glass-card volcanic-glow overflow-hidden">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-primary/20 to-volcanic-orange/20 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-primary/30 flex items-center justify-center">
-                  <FileText className="w-7 h-7 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl text-foreground tracking-wide">
-                    {siteConfig.name}
-                  </h3>
-                  <p className="text-muted-foreground font-body text-sm">
-                    AI Engineer | LLM & RAG Specialist
-                  </p>
-                </div>
-              </div>
-              <Button variant="volcanic" onClick={handleDownload}>
-                <Download className="w-4 h-4 mr-2" />
-                DOWNLOAD PDF
-              </Button>
-            </div>
-
-            {/* Resume content - scrollable */}
-            <div className="p-6 md:p-8 max-h-[600px] overflow-y-auto">
-              <div className="space-y-8">
-                {/* Summary */}
-                <div>
-                  <h4 className="font-heading text-lg text-primary tracking-wider mb-3 border-b border-border/50 pb-2 flex items-center gap-2">
-                    <Briefcase className="w-5 h-5" />
-                    PROFESSIONAL SUMMARY
-                  </h4>
-                  <p className="text-secondary-foreground font-body leading-relaxed">
-                    AI Engineer specializing in LLM applications and RAG systems. Built 5 production-ready AI projects serving 100+ users with 90%+ accuracy. Proficient in Python, LangChain, OpenAI APIs, and vector databases. Strong expertise in prompt engineering, NLP, and deploying scalable ML applications.
-                  </p>
-                </div>
-
-                {/* Education */}
-                <div>
-                  <h4 className="font-heading text-lg text-primary tracking-wider mb-4 border-b border-border/50 pb-2 flex items-center gap-2">
-                    <GraduationCap className="w-5 h-5" />
-                    EDUCATION
-                  </h4>
-                  <div className="relative pl-4 border-l-2 border-primary/30">
-                    <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-primary" />
-                    <h5 className="font-heading text-base text-foreground tracking-wide">
-                      B.Tech in Artificial Intelligence & Data Science
-                    </h5>
-                    <p className="text-primary text-sm font-body">
-                      Sir Issac Newton College of Engineering and Technology | 2022 - 2026
+          {/* Resume Header Card */}
+          <div className="glass-card volcanic-glow mb-6 overflow-hidden">
+            <div className="bg-gradient-to-r from-primary/10 via-volcanic-orange/10 to-primary/5 p-6 md:p-8">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                {/* Profile Info */}
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-volcanic-orange flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-2xl text-foreground tracking-wide">
+                      {siteConfig.name}
+                    </h3>
+                    <p className="text-primary font-heading text-sm tracking-wider mt-1">
+                      {siteConfig.tagline}
                     </p>
-                    <p className="text-muted-foreground font-body text-sm mt-1">
-                      CGPA: 7.5/10 | Coursework: Machine Learning, Deep Learning, NLP, RAG Systems, Linear Algebra, Statistics
-                    </p>
-                  </div>
-                </div>
-
-                {/* Technical Skills */}
-                <div>
-                  <h4 className="font-heading text-lg text-primary tracking-wider mb-4 border-b border-border/50 pb-2 flex items-center gap-2">
-                    <Code className="w-5 h-5" />
-                    TECHNICAL SKILLS
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-body">
-                    <div>
-                      <span className="text-foreground font-heading text-xs tracking-wider">CORE PYTHON:</span>
-                      <p className="text-muted-foreground">Functions, OOP, Data Structures</p>
-                    </div>
-                    <div>
-                      <span className="text-foreground font-heading text-xs tracking-wider">LIBRARIES:</span>
-                      <p className="text-muted-foreground">NumPy, Pandas, Matplotlib, Seaborn, scikit-learn</p>
-                    </div>
-                    <div>
-                      <span className="text-foreground font-heading text-xs tracking-wider">DEEP LEARNING:</span>
-                      <p className="text-muted-foreground">TensorFlow, PyTorch, CNNs, Transfer Learning</p>
-                    </div>
-                    <div>
-                      <span className="text-foreground font-heading text-xs tracking-wider">MODERN AI:</span>
-                      <p className="text-muted-foreground">LLMs, Prompt Engineering, Hugging Face, LangChain</p>
-                    </div>
-                    <div>
-                      <span className="text-foreground font-heading text-xs tracking-wider">TOOLS:</span>
-                      <p className="text-muted-foreground">Git, GitHub, Jupyter, Flask, Docker, SQL</p>
-                    </div>
-                    <div>
-                      <span className="text-foreground font-heading text-xs tracking-wider">MATH:</span>
-                      <p className="text-muted-foreground">Linear Algebra, Statistics, Probability</p>
+                    <div className="flex flex-wrap items-center gap-4 mt-3 text-muted-foreground text-sm font-body">
+                      <span className="flex items-center gap-1.5">
+                        <Mail className="w-3.5 h-3.5" />
+                        {siteConfig.email}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Phone className="w-3.5 h-3.5" />
+                        {siteConfig.phone}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {siteConfig.location.split(' - ')[0]}
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                {/* Projects */}
-                <div>
-                  <h4 className="font-heading text-lg text-primary tracking-wider mb-4 border-b border-border/50 pb-2 flex items-center gap-2">
-                    <Award className="w-5 h-5" />
-                    PRODUCTION AI PROJECTS
-                  </h4>
-                  <div className="space-y-4">
-                    <div className="relative pl-4 border-l-2 border-primary/30">
-                      <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-primary" />
-                      <h5 className="font-heading text-base text-foreground tracking-wide">
-                        DocuMind AI - RAG Document Intelligence
-                      </h5>
-                      <p className="text-primary text-sm font-body">LangChain, ChromaDB, OpenAI | 2025</p>
-                      <p className="text-muted-foreground font-body text-sm mt-1">
-                        90%+ accuracy, 80% reduced search time, serving 100+ users
-                      </p>
-                    </div>
-                    <div className="relative pl-4 border-l-2 border-primary/30">
-                      <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-primary" />
-                      <h5 className="font-heading text-base text-foreground tracking-wide">
-                        CareerGPT - AI Career Platform
-                      </h5>
-                      <p className="text-primary text-sm font-body">GPT-4, spaCy, NLP | 2025</p>
-                      <p className="text-muted-foreground font-body text-sm mt-1">
-                        95%+ resume parsing accuracy, 88% job matching fit accuracy
-                      </p>
-                    </div>
-                    <div className="relative pl-4 border-l-2 border-primary/30">
-                      <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-primary" />
-                      <h5 className="font-heading text-base text-foreground tracking-wide">
-                        ATS Resume Analyzer
-                      </h5>
-                      <p className="text-primary text-sm font-body">spaCy, GPT-3.5, TF-IDF | 2024</p>
-                      <p className="text-muted-foreground font-body text-sm mt-1">
-                        96% parsing accuracy, Featured on LinkedIn
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Certifications */}
-                <div>
-                  <h4 className="font-heading text-lg text-primary tracking-wider mb-3 border-b border-border/50 pb-2">
-                    CERTIFICATIONS
-                  </h4>
-                  <ul className="text-muted-foreground font-body text-sm space-y-1">
-                    <li>• Machine Learning Specialization - Coursera</li>
-                    <li>• Deep Learning - Great Learning</li>
-                  </ul>
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-3">
+                  <Button 
+                    variant="outline" 
+                    onClick={handleViewResume}
+                    className="border-primary/30 hover:border-primary hover:bg-primary/10"
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    VIEW PDF
+                  </Button>
+                  <Button variant="volcanic" onClick={handleDownload}>
+                    <Download className="w-4 h-4 mr-2" />
+                    DOWNLOAD
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Contact info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center text-muted-foreground text-sm font-body mt-6 space-y-1"
-          >
-            <p>{siteConfig.email} | {siteConfig.phone}</p>
-            <p>{siteConfig.location}</p>
-          </motion.div>
+          {/* Interactive Resume Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Tab Navigation */}
+            <div className="lg:col-span-1">
+              <div className="glass-card p-4 sticky top-24">
+                <nav className="space-y-2">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-heading text-sm tracking-wider transition-all duration-300 ${
+                        activeTab === tab.id
+                          ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
+                      }`}
+                    >
+                      {tab.icon}
+                      <span>{tab.label}</span>
+                      {activeTab === tab.id && (
+                        <ChevronRight className="w-4 h-4 ml-auto" />
+                      )}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+            </div>
+
+            {/* Tab Content */}
+            <div className="lg:col-span-3">
+              <div className="glass-card p-6 md:p-8 min-h-[400px]">
+                <AnimatePresence mode="wait">
+                  {renderTabContent()}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
