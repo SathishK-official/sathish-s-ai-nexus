@@ -144,7 +144,10 @@ const ResumeSection = () => {
             {Object.entries(skillsData).map(([category, skills], catIndex) => (
               <div key={category} className="space-y-3">
                 <h4 className="font-heading text-sm text-primary tracking-widest uppercase">
-                  {category === 'libsAndAlgorithms' ? 'AI & ML Libraries' : category}
+                  {category === 'libsAndAlgorithms' ? 'AI & ML' : 
+                   category === 'libraries' ? 'Data Libraries' :
+                   category === 'applications' ? 'Applications' :
+                   category === 'mathematics' ? 'Mathematics' : category}
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   {skills.map((skill, index) => (

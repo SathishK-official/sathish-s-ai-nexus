@@ -138,17 +138,14 @@ export const projectsData = [
 ];
 
 export const skillsData = {
-  languages: [
-    { name: "Python", level: 95 },
-    { name: "SQL", level: 85 },
-    { name: "JavaScript", level: 70 },
-  ],
-  softwares: [
-    { name: "Git & GitHub", level: 90 },
-    { name: "Jupyter", level: 95 },
-    { name: "Docker", level: 80 },
-    { name: "Flask", level: 85 },
-    { name: "VS Code", level: 90 },
+  libsAndAlgorithms: [
+    { name: "RAG Systems", level: 92 },
+    { name: "Prompt Engineering", level: 95 },
+    { name: "NLP (spaCy/NLTK)", level: 88 },
+    { name: "CNN/Transfer Learning", level: 82 },
+    { name: "Vector Databases", level: 88 },
+    { name: "LLMs (GPT/Gemini)", level: 90 },
+    { name: "Deep Learning", level: 85 },
   ],
   tools: [
     { name: "TensorFlow", level: 85 },
@@ -158,13 +155,29 @@ export const skillsData = {
     { name: "OpenAI APIs", level: 90 },
     { name: "Hugging Face", level: 85 },
   ],
-  libsAndAlgorithms: [
-    { name: "RAG Systems", level: 92 },
-    { name: "Prompt Engineering", level: 95 },
-    { name: "NLP (spaCy/NLTK)", level: 88 },
-    { name: "CNN/Transfer Learning", level: 82 },
-    { name: "Vector Databases", level: 88 },
-    { name: "LLMs (GPT/Gemini)", level: 90 },
+  libraries: [
+    { name: "NumPy", level: 90 },
+    { name: "Pandas", level: 92 },
+    { name: "Matplotlib", level: 85 },
+    { name: "Seaborn", level: 85 },
+  ],
+  languages: [
+    { name: "Python", level: 95 },
+    { name: "SQL", level: 85 },
+    { name: "JavaScript", level: 70 },
+  ],
+  applications: [
+    { name: "Git & GitHub", level: 90 },
+    { name: "Jupyter", level: 95 },
+    { name: "Docker", level: 80 },
+    { name: "Flask", level: 85 },
+    { name: "Streamlit", level: 88 },
+    { name: "VS Code", level: 90 },
+  ],
+  mathematics: [
+    { name: "Linear Algebra", level: 85 },
+    { name: "Statistics", level: 88 },
+    { name: "Probability", level: 85 },
   ],
 };
 
