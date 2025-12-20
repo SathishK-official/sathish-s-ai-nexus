@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Monitor, Wrench, BookOpen } from 'lucide-react';
+import { Code, Monitor, Wrench, BookOpen, Library, Calculator } from 'lucide-react';
 import { skillsData } from '@/config/portfolio';
 
 
 const categories = [
-  { id: 'languages', label: 'LANGUAGES', icon: Code, data: skillsData.languages },
-  { id: 'softwares', label: 'SOFTWARES', icon: Monitor, data: skillsData.softwares },
+  { id: 'libsAndAlgorithms', label: 'AI & ML', icon: BookOpen, data: skillsData.libsAndAlgorithms },
   { id: 'tools', label: 'TOOLS', icon: Wrench, data: skillsData.tools },
-  { id: 'libsAndAlgorithms', label: 'LIB & ALGMS', icon: BookOpen, data: skillsData.libsAndAlgorithms },
+  { id: 'libraries', label: 'LIBRARIES', icon: Library, data: skillsData.libraries },
+  { id: 'languages', label: 'LANGUAGES', icon: Code, data: skillsData.languages },
+  { id: 'applications', label: 'APPLICATIONS', icon: Monitor, data: skillsData.applications },
+  { id: 'mathematics', label: 'MATHEMATICS', icon: Calculator, data: skillsData.mathematics },
 ];
 
 const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState('languages');
+  const [activeCategory, setActiveCategory] = useState('libsAndAlgorithms');
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const { ref, inView } = useInView({
     threshold: 0.1,
