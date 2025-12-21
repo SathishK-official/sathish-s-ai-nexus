@@ -43,26 +43,9 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
         isScrolled ? 'bg-background/90 backdrop-blur-xl border-b border-border/50' : 'bg-transparent'
       )}
     >
-      <nav className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => scrollToSection('home')}
-        >
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-primary to-volcanic-orange flex items-center justify-center flex-shrink-0">
-            <span className="text-primary-foreground font-display text-lg sm:text-xl">SK</span>
-          </div>
-          <span className="hidden sm:block font-heading text-base sm:text-lg tracking-wider text-foreground">
-            SATHISH<span className="text-primary">.</span>
-          </span>
-        </motion.div>
-
-        {/* Desktop/Tablet Navigation - visible on md screens and above */}
-        <div className={cn(
-          "hidden md:flex items-center gap-1 lg:gap-2 p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30",
-          isLocked && "absolute left-1/2 -translate-x-1/2"
-        )}>
+      <nav className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-center">
+        {/* Desktop/Tablet Navigation - centered, visible on md screens and above */}
+        <div className="hidden md:flex items-center p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30">
           {visibleNavItems.map((item, index) => (
             <motion.button
               key={item.id}
@@ -71,7 +54,7 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
               transition={{ delay: index * 0.1 }}
               onClick={() => scrollToSection(item.id)}
               className={cn(
-                'px-2 md:px-3 lg:px-4 py-1.5 md:py-2 font-heading text-xs lg:text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover whitespace-nowrap',
+                'flex-1 px-3 lg:px-4 xl:px-5 py-2 font-heading text-xs lg:text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover whitespace-nowrap text-center',
                 activeSection === item.id
                   ? 'text-primary-foreground bg-primary shadow-lg shadow-primary/30'
                   : 'text-muted-foreground hover:text-foreground hover:bg-secondary/80'
@@ -90,9 +73,6 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-
-        {/* Empty div to balance flex when locked on desktop/tablet */}
-        {isLocked && <div className="hidden md:block w-8 sm:w-10" />}
       </nav>
 
       {/* Mobile Menu - only visible on mobile (below md) */}
