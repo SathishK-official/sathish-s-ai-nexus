@@ -20,7 +20,7 @@ export const siteConfig = {
   
   // Social Links
   social: {
-    github: "https://github.com/sathishk",
+    github: "https://github.com/SathishK-official",
     linkedin: "https://linkedin.com/in/sathishkrishnamoorthi-lnkin",
     gmail: "mailto:sathishkrishnamoorthi.contact@gmail.com",
     instagram: "",

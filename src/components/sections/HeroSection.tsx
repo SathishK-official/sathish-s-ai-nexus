@@ -54,14 +54,14 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 text-center relative z-10">
+      <div className="container mx-auto px-3 sm:px-4 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-6"
+          className="mb-4 sm:mb-6"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary font-heading text-sm tracking-widest">
+          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 text-primary font-heading text-xs sm:text-sm tracking-widest">
             WELCOME TO MY UNIVERSE
           </span>
         </motion.div>
@@ -70,7 +70,7 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl tracking-wide mb-4 text-foreground"
+          className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-wide mb-3 sm:mb-4 text-foreground"
         >
           {siteConfig.name}
         </motion.h1>
@@ -79,12 +79,12 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center gap-3 mb-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 mb-4 sm:mb-6"
         >
-          <span className="font-heading text-2xl md:text-3xl lg:text-4xl text-primary tracking-wider">
+          <span className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary tracking-wider">
             {siteConfig.role}
           </span>
-          <span className="font-heading text-2xl md:text-3xl lg:text-4xl text-foreground tracking-wider">
+          <span className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground tracking-wider">
             <TypeAnimation
               sequence={siteConfig.roles.flatMap((role) => [role, 2000])}
               wrapper="span"
@@ -99,7 +99,7 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-muted-foreground/70 text-base md:text-lg max-w-4xl mx-auto mb-8 font-body italic leading-relaxed text-center"
+          className="text-muted-foreground/70 text-sm sm:text-base md:text-lg max-w-4xl mx-auto mb-4 sm:mb-8 font-body italic leading-relaxed text-center px-2"
         >
           More than a profile — this is proof of growth through building. These projects reflect my technical strengths,
           <br className="hidden md:block" />
@@ -112,7 +112,7 @@ const HeroSection = ({ onUnlock }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-body leading-relaxed"
+          className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-6 sm:mb-10 font-body leading-relaxed px-2"
         >
           "{siteConfig.quote}"
         </motion.p>
