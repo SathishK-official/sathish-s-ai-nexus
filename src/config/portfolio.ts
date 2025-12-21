@@ -23,7 +23,7 @@ export const siteConfig = {
     github: "https://github.com/SathishK-official",
     linkedin: "https://linkedin.com/in/sathishkrishnamoorthi-lnkin",
     gmail: "mailto:sathishkrishnamoorthi.contact@gmail.com",
-    instagram: "",
+    instagram: "https://www.instagram.com/sathish.offixial/",
   },
 
   // About Section
