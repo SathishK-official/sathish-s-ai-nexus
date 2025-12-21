@@ -50,20 +50,20 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-12"
         >
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-heading text-sm tracking-wider transition-all duration-300 ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-heading text-xs sm:text-sm tracking-wider transition-all duration-300 ${
                 activeCategory === category.id
                   ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30'
                   : 'glass-card text-muted-foreground hover:text-primary hover:border-primary/50'
               }`}
             >
-              <category.icon className="w-4 h-4" />
-              {category.label}
+              <category.icon className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="truncate">{category.label}</span>
             </button>
           ))}
         </motion.div>
@@ -76,9 +76,9 @@ const SkillsSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="glass-card p-6 md:p-10 volcanic-glow"
+            className="glass-card p-4 sm:p-6 md:p-10 volcanic-glow"
           >
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               {activeData.map((skill, index) => (
                 <motion.div
                   key={skill.name}
@@ -90,10 +90,10 @@ const SkillsSection = () => {
                   className="relative"
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-heading text-base text-foreground tracking-wide">
+                    <span className="font-heading text-sm sm:text-base text-foreground tracking-wide">
                       {skill.name}
                     </span>
-                    <span className="font-heading text-sm text-primary">
+                    <span className="font-heading text-xs sm:text-sm text-primary">
                       {skill.level}%
                     </span>
                   </div>

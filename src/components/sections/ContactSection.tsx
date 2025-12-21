@@ -71,19 +71,19 @@ const ContactSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="glass-card p-6 md:p-8 volcanic-glow">
-              <h3 className="font-heading text-2xl text-foreground tracking-wide mb-6">
+            <div className="glass-card p-4 sm:p-6 md:p-8 volcanic-glow">
+              <h3 className="font-heading text-xl sm:text-2xl text-foreground tracking-wide mb-4 sm:mb-6">
                 SEND ME A MESSAGE
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid md:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <div>
                     <Input
                       name="name"
@@ -91,7 +91,7 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-secondary/50 border-border/50 focus:border-primary h-12 font-body"
+                      className="bg-secondary/50 border-border/50 focus:border-primary h-10 sm:h-12 font-body text-sm sm:text-base"
                     />
                   </div>
                   <div>
@@ -102,7 +102,7 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-secondary/50 border-border/50 focus:border-primary h-12 font-body"
+                      className="bg-secondary/50 border-border/50 focus:border-primary h-10 sm:h-12 font-body text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const ContactSection = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="bg-secondary/50 border-border/50 focus:border-primary h-12 font-body"
+                    className="bg-secondary/50 border-border/50 focus:border-primary h-10 sm:h-12 font-body text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -123,15 +123,15 @@ const ContactSection = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="bg-secondary/50 border-border/50 focus:border-primary resize-none font-body"
+                    rows={4}
+                    className="bg-secondary/50 border-border/50 focus:border-primary resize-none font-body text-sm sm:text-base"
                   />
                 </div>
                 <Button
                   type="submit"
                   variant="volcanic"
                   size="lg"
-                  className="w-full"
+                  className="w-full text-sm sm:text-base"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -155,49 +155,49 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col justify-between"
+            className="flex flex-col gap-4 sm:gap-6"
           >
-            <div className="glass-card p-6 md:p-8 mb-6 volcanic-glow">
-              <h3 className="font-heading text-2xl text-foreground tracking-wide mb-6">
+            <div className="glass-card p-4 sm:p-6 md:p-8 volcanic-glow">
+              <h3 className="font-heading text-xl sm:text-2xl text-foreground tracking-wide mb-4 sm:mb-6">
                 CONTACT INFO
               </h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary" />
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
-                  <div>
-                    <p className="text-muted-foreground text-sm font-body">Email</p>
-                    <p className="text-foreground font-body">{siteConfig.email}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground text-sm font-body">Location</p>
-                    <p className="text-foreground font-body">Available Worldwide</p>
+                  <div className="min-w-0">
+                    <p className="text-muted-foreground text-xs sm:text-sm font-body">Email</p>
+                    <p className="text-foreground font-body text-sm sm:text-base truncate">{siteConfig.email}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-primary" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-muted-foreground text-sm font-body">Phone</p>
-                    <p className="text-foreground font-body">Available on request</p>
+                    <p className="text-muted-foreground text-xs sm:text-sm font-body">Location</p>
+                    <p className="text-foreground font-body text-sm sm:text-base">Available Worldwide</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground text-xs sm:text-sm font-body">Phone</p>
+                    <p className="text-foreground font-body text-sm sm:text-base">Available on request</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="glass-card p-6 md:p-8 volcanic-glow">
-              <h3 className="font-heading text-xl text-foreground tracking-wide mb-6">
+            <div className="glass-card p-4 sm:p-6 md:p-8 volcanic-glow">
+              <h3 className="font-heading text-lg sm:text-xl text-foreground tracking-wide mb-4 sm:mb-6">
                 CONNECT WITH ME
               </h3>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.name}
@@ -206,10 +206,10 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`w-14 h-14 rounded-xl bg-secondary/50 border border-border/50 flex items-center justify-center text-muted-foreground transition-all duration-300 hover:border-primary/50 ${social.color}`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-secondary/50 border border-border/50 flex items-center justify-center text-muted-foreground transition-all duration-300 hover:border-primary/50 ${social.color}`}
                     aria-label={`Visit ${social.name}`}
                   >
-                    <social.icon className="w-6 h-6" />
+                    <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.a>
                 ))}
               </div>

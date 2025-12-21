@@ -43,23 +43,26 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
         isScrolled ? 'bg-background/90 backdrop-blur-xl border-b border-border/50' : 'bg-transparent'
       )}
     >
-      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <nav className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => scrollToSection('home')}
         >
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-volcanic-orange flex items-center justify-center">
-            <span className="text-primary-foreground font-display text-xl">SK</span>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-primary to-volcanic-orange flex items-center justify-center flex-shrink-0">
+            <span className="text-primary-foreground font-display text-lg sm:text-xl">SK</span>
           </div>
-          <span className="hidden md:block font-heading text-lg tracking-wider text-foreground">
+          <span className="hidden sm:block font-heading text-base sm:text-lg tracking-wider text-foreground">
             SATHISH<span className="text-primary">.</span>
           </span>
         </motion.div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-2 p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30">
+        {/* Desktop Navigation - centered when locked */}
+        <div className={cn(
+          "hidden lg:flex items-center gap-1 xl:gap-2 p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30",
+          isLocked && "absolute left-1/2 -translate-x-1/2"
+        )}>
           {visibleNavItems.map((item, index) => (
             <motion.button
               key={item.id}
@@ -68,7 +71,7 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
               transition={{ delay: index * 0.1 }}
               onClick={() => scrollToSection(item.id)}
               className={cn(
-                'px-4 py-2 font-heading text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover',
+                'px-3 xl:px-4 py-2 font-heading text-xs xl:text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover whitespace-nowrap',
                 activeSection === item.id
                   ? 'text-primary-foreground bg-primary shadow-lg shadow-primary/30'
                   : 'text-muted-foreground hover:text-foreground hover:bg-secondary/80'
@@ -87,6 +90,9 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+
+        {/* Empty div to balance flex when locked on desktop */}
+        {isLocked && <div className="hidden lg:block w-8 sm:w-10" />}
       </nav>
 
       {/* Mobile Menu */}
