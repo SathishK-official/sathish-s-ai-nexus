@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Monitor, Wrench, BookOpen, Library, Calculator } from 'lucide-react';
+import { Code, Monitor, Wrench, BookOpen, Library, Calculator, GraduationCap } from 'lucide-react';
 import { skillsData } from '@/config/portfolio';
 
 
@@ -90,11 +90,16 @@ const SkillsSection = () => {
                   className="relative"
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-heading text-sm sm:text-base text-foreground tracking-wide">
+                    <span className="font-heading text-sm sm:text-base text-foreground tracking-wide flex items-center gap-2">
                       {skill.name}
+                      {'isLearning' in skill && skill.isLearning && (
+                        <span title="Currently Learning">
+                          <GraduationCap className="w-4 h-4 text-volcanic-orange" />
+                        </span>
+                      )}
                     </span>
                     <span className="font-heading text-xs sm:text-sm text-primary">
-                      {skill.level}%
+                      {skill.level}%+
                     </span>
                   </div>
                   <div className="h-3 rounded-full bg-secondary overflow-hidden">
