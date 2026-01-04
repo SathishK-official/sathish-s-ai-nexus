@@ -10,6 +10,8 @@ import AchievementsSection from '@/components/sections/AchievementsSection';
 import ResumeSection from '@/components/sections/ResumeSection';
 import ContactSection from '@/components/sections/ContactSection';
 import FloatingShapes from '@/components/FloatingShapes';
+import ScrollToTop from '@/components/ScrollToTop';
+import PageTransition from '@/components/PageTransition';
 import { siteConfig } from '@/config/portfolio';
 
 const Index = () => {
@@ -53,20 +55,37 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <FloatingShapes />
       <Header activeSection={activeSection} isLocked={isLocked} />
+      <ScrollToTop />
       
       <main>
         <HeroSection onUnlock={handleUnlock} />
         
         {!isLocked && (
           <>
-            <AboutSection />
-            <EducationSection />
-            <ProjectsSection />
-            <ExperienceSection />
-            <SkillsSection />
-            <AchievementsSection />
-            <ResumeSection />
-            <ContactSection />
+            <PageTransition delay={0.1}>
+              <AboutSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <EducationSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <ProjectsSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <ExperienceSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <SkillsSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <AchievementsSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <ResumeSection />
+            </PageTransition>
+            <PageTransition delay={0.1}>
+              <ContactSection />
+            </PageTransition>
           </>
         )}
       </main>
