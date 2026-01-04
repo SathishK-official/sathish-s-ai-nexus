@@ -47,8 +47,8 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
       )}
     >
       <nav className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-center">
-        {/* Desktop/Tablet Navigation - centered, visible on md screens and above */}
-        <div className="hidden md:flex items-center p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30">
+        {/* Desktop Navigation - centered, visible on lg screens and above */}
+        <div className="hidden lg:flex items-center p-1 rounded-xl bg-card/50 backdrop-blur-sm border border-border/30">
           {visibleNavItems.map((item, index) => (
             <motion.button
               key={item.id}
@@ -57,7 +57,7 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
               transition={{ delay: index * 0.1 }}
               onClick={() => scrollToSection(item.id)}
               className={cn(
-                'flex-1 px-3 lg:px-4 xl:px-5 py-2 font-heading text-xs lg:text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover whitespace-nowrap text-center',
+                'flex-1 px-2 xl:px-4 py-2 font-heading text-xs xl:text-sm tracking-wider rounded-lg transition-all duration-300 reflection-hover whitespace-nowrap text-center',
                 activeSection === item.id
                   ? 'text-primary-foreground bg-primary shadow-lg shadow-primary/30'
                   : 'text-muted-foreground hover:text-foreground hover:bg-secondary/80'
@@ -68,24 +68,24 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
           ))}
         </div>
 
-        {/* Mobile Menu Button - only visible on mobile (below md) */}
+        {/* Mobile/Tablet Menu Button - visible below lg */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+          className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {/* Mobile Menu - only visible on mobile (below md) */}
+      {/* Mobile/Tablet Menu - visible below lg */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
               {visibleNavItems.map((item) => (
