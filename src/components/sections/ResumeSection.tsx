@@ -51,7 +51,7 @@ const ResumeSection = () => {
   };
 
   const handleViewResume = () => {
-    window.open('/resume/SATHISH_K_resume.pdf', '_blank');
+    window.open('/resume-pdf', '_blank');
   };
 
   const renderTabContent = () => {
