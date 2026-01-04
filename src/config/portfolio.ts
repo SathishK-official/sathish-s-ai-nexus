@@ -164,7 +164,7 @@ export const skillsData = {
   languages: [
     { name: "Python", level: 95 },
     { name: "SQL", level: 85 },
-    { name: "JavaScript", level: 70 },
+    { name: "Java", level: 30, isLearning: true },
   ],
   applications: [
     { name: "Git & GitHub", level: 90 },
