@@ -22,11 +22,14 @@ const Header = ({ activeSection, isLocked }: HeaderProps) => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMobileMenuOpen(false);
+    // Small delay to allow mobile menu to close before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   const visibleNavItems = isLocked 
